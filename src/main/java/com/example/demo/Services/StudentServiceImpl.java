@@ -1,14 +1,22 @@
 package com.example.demo.Services;
 
 import com.example.demo.Entities.Student;
+import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public class StudentServiceImpl implements StudentService{
+@Service
+public class StudentServiceImpl implements StudentService {
 
 
     private StudentRepository studentRepository;
+
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     @Override
     public void addNewStudent(Student student) {
@@ -22,11 +30,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> findStudentsAboveAge(int age) {
-        567,648,000,000
+        return studentRepository.findByDateOfBirthBefore(LocalDate.now().minusYears(age));
     }
 
-    @Override
-    public List<Student> findStudentsInGroup(String groupName) {
-        return null;
-    }
 }

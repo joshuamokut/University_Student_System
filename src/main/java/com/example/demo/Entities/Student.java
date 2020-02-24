@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import com.example.demo.Utilities.Gender;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.time.LocalDate;
 
@@ -19,16 +21,16 @@ public class Student {
     private Long id;
     private String name;
     private String surname;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Gender gender;
     private Long groupId;
 
     protected Student(){}
 
-    public Student(String name, String surname, String dateOfBirth, Gender gender, Long groupId) throws ParseException {
+    public Student(String name, String surname, String dateOfBirth, Gender gender, Long groupId) {
         this.name=name;
         this.surname=surname;
-        this.dateOfBirth=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
+        this.dateOfBirth=LocalDate.parse(dateOfBirth,  DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.gender=gender;
         this.groupId=groupId;
     }
@@ -46,7 +48,7 @@ public class Student {
         return surname;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 

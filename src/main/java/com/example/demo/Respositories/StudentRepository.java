@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    List<Student> findByDateOfBirthBefore(Date date);
+    List<Student> findByDateOfBirthBefore(LocalDate date);
     List<Student> findAllByGroupIdEquals(Long groupId);
     List<Student> findAllByName(String name);
+
 }

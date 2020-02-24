@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
-    List<Group> findGroupByNameIs(String name);
+    Group findFirstByName(String name);
+    List<Group> findAllByName(String name);
 }
