@@ -6,7 +6,7 @@ import com.example.demo.Respositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -24,17 +24,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> findStudentsByName(String name) {
+    public ArrayList<Student> findStudentsByName(String name) {
         return studentRepository.findAllByName(name);
     }
 
     @Override
-    public List<Student> findStudentsAboveAge(int age) {
+    public ArrayList<Student> findStudentsAboveAge(int age) {
         return studentRepository.findByDateOfBirthBefore(LocalDate.now().minusYears(age));
     }
 
     @Override
-    public List<Student> showAllStudents() {
+    public ArrayList<Student> showAllStudents() {
         return studentRepository.findAll();
     }
 }

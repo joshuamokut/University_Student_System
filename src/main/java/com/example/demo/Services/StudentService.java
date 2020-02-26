@@ -2,15 +2,15 @@ package com.example.demo.Services;
 
 import com.example.demo.Entities.Student;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 public interface StudentService {
     void addNewStudent(Student student);
 
-    List<Student> findStudentsByName(String name);
+    ArrayList<Student> findStudentsByName(String name);
 
-    List<Student> findStudentsAboveAge(int age);
+    ArrayList<Student> findStudentsAboveAge(int age);
 
-    List<Student> showAllStudents();
+    ArrayList<Student> showAllStudents();
 }

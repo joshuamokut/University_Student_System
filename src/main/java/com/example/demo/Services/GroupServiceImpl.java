@@ -6,7 +6,7 @@ import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class GroupServiceImpl implements GroupService {
@@ -25,13 +25,13 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<StudentGroup> getGroupByName(String name) {
+    public ArrayList<StudentGroup> getGroupByName(String name) {
         return groupRepository.findAllByName(name);
     }
 
 
     @Override
-    public List<Student> findStudentsInGroup(String groupName) {
+    public ArrayList<Student> findStudentsInGroup(String groupName) {
         return studentRepository.findAllByGroupIdEquals(groupRepository.findFirstByName(groupName).getId());
     }
 }

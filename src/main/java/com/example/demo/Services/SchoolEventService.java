@@ -4,24 +4,24 @@ import com.example.demo.Entities.SchoolEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface SchoolEventService {
-    List<SchoolEvent> showEventsToday();
+    ArrayList<SchoolEvent> showEventsToday();
 
     void addEvent(SchoolEvent event);
 
-    List<SchoolEvent> showEventsOn(LocalDate date);
+    ArrayList<SchoolEvent> showEventsOn(LocalDate date);
 
-    List<SchoolEvent> showEventsOn(LocalDate date, LocalTime time);
+    ArrayList<SchoolEvent> showEventsOn(LocalDate date, LocalTime time);
 
-    List<SchoolEvent> showEventsAt(String venue);
+    ArrayList<SchoolEvent> showEventsAt(String venue);
 
-    List<SchoolEvent> showEventsAt(String venue, LocalDate date);
+    ArrayList<SchoolEvent> showEventsAt(String venue, LocalDate date);
 
-    List<SchoolEvent> showEventsAt(String Venue, LocalDate date, LocalTime time);
+    ArrayList<SchoolEvent> showEventsAt(String Venue, LocalDate date, LocalTime time);
 
-    List<SchoolEvent> showAll();
+    ArrayList<SchoolEvent> showAll();
 
-    List<SchoolEvent> showEvent(String eventName);
+    ArrayList<SchoolEvent> showEvent(String eventName);
 }

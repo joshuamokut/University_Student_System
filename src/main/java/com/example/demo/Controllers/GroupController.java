@@ -6,7 +6,7 @@ import com.example.demo.Services.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/groups")
@@ -28,12 +28,12 @@ public class GroupController {
     }
 
     @GetMapping("/byName")
-    public List<StudentGroup> getGroupsByName(@RequestParam(value = "name", defaultValue = "oaken") String name) {
+    public ArrayList<StudentGroup> getGroupsByName(@RequestParam(value = "name", defaultValue = "oaken") String name) {
         return groupService.getGroupByName(name);
     }
 
     @GetMapping("/getStudents")
-    public List<Student> getStudentsInGroup(@RequestParam() String name) {
+    public ArrayList<Student> getStudentsInGroup(@RequestParam() String name) {
         return groupService.findStudentsInGroup(name);
     }
 }

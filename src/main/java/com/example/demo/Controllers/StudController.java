@@ -5,7 +5,7 @@ import com.example.demo.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/stud")
@@ -18,17 +18,17 @@ public class StudController {
     }
 
     @GetMapping("all")
-    public List<Student> showAllStudents(){
+    public ArrayList<Student> showAllStudents(){
         return studentService.showAllStudents();
     }
 
     @GetMapping(value = "/find")
-    public List<Student> findStudentsByName(@RequestParam(value ="name") String name){
+    public ArrayList<Student> findStudentsByName(@RequestParam(value ="name") String name){
         return studentService.findStudentsByName(name);
     }
 
     @GetMapping(value = "/find/adults")
-    public List<Student> findAdult(){
+    public ArrayList<Student> findAdult(){
         return studentService.findStudentsAboveAge(18);
     }
 

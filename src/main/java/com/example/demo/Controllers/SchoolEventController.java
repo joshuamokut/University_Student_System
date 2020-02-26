@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("event")
@@ -33,17 +33,17 @@ public class SchoolEventController {
     }
 
     @GetMapping("all")
-    List<SchoolEvent> ShowAll(){
+    ArrayList<SchoolEvent> ShowAll(){
         return schoolEventService.showAll();
     }
 
     @GetMapping("today")
-    List<SchoolEvent> ShowToday(){
+    ArrayList<SchoolEvent> ShowToday(){
         return schoolEventService.showEventsToday();
     }
 
     @GetMapping("date")
-    List<SchoolEvent> ShowEventsOn(@RequestParam String date){
+    ArrayList<SchoolEvent> ShowEventsOn(@RequestParam String date){
         try {
             return schoolEventService.showEventsOn(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }catch (DateTimeParseException e) {
@@ -52,7 +52,7 @@ public class SchoolEventController {
     }
 
     @GetMapping("date/time")
-    List<SchoolEvent> ShowEventsOn(@RequestParam String date, @RequestParam String time){
+    ArrayList<SchoolEvent> ShowEventsOn(@RequestParam String date, @RequestParam String time){
         try {
             return schoolEventService.showEventsOn(
                     LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
@@ -64,17 +64,17 @@ public class SchoolEventController {
         }
     }
 
-    List<SchoolEvent> ShowEvent(@RequestParam String eventName){
+    ArrayList<SchoolEvent> ShowEvent(@RequestParam String eventName){
         return schoolEventService.showEvent(eventName);
     }
 
     @GetMapping("venue")
-    List<SchoolEvent> ShowEventsAt(@RequestParam String venue){
+    ArrayList<SchoolEvent> ShowEventsAt(@RequestParam String venue){
         return schoolEventService.showEventsAt(venue);
     }
 
     @GetMapping("venue/date")
-    List<SchoolEvent> ShowEventsAt(@RequestParam String venue, @RequestParam String date){
+    ArrayList<SchoolEvent> ShowEventsAt(@RequestParam String venue, @RequestParam String date){
         try{
             return schoolEventService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
@@ -86,7 +86,7 @@ public class SchoolEventController {
     }
 
     @GetMapping("venue/date/time")
-    List<SchoolEvent> ShowEventsAt(@RequestParam String venue, @RequestParam String date, @RequestParam String time){
+    ArrayList<SchoolEvent> ShowEventsAt(@RequestParam String venue, @RequestParam String date, @RequestParam String time){
         try{
             return schoolEventService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
