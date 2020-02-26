@@ -33,4 +33,8 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByDateOfBirthBefore(LocalDate.now().minusYears(age));
     }
 
+    @Override
+    public List<Student> showAllStudents() {
+        return studentRepository.findAll();
+    }
 }

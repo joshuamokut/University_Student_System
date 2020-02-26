@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Group {
+public class StudentGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +14,9 @@ public class Group {
     private String name;
     private String description;
 
-    protected Group(){}
+    protected StudentGroup(){}
 
-    public Group(String name, String description){
+    public StudentGroup(String name, String description){
         this.name=name;
         this.description=description;
     }

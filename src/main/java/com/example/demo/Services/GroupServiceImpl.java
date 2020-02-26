@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Group;
+import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Entities.Student;
 import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
@@ -9,23 +9,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GroupServicesImpl implements GroupServices {
+public class GroupServiceImpl implements GroupService {
 
     GroupRepository groupRepository;
     StudentRepository studentRepository;
 
-    public GroupServicesImpl(GroupRepository groupRepository, StudentRepository studentRepository) {
+    public GroupServiceImpl(GroupRepository groupRepository, StudentRepository studentRepository) {
         this.groupRepository = groupRepository;
         this.studentRepository = studentRepository;
     }
 
     @Override
-    public void addNewGroup(Group group) {
-        groupRepository.save(group);
+    public void addNewGroup(StudentGroup studentGroup) {
+        groupRepository.save(studentGroup);
     }
 
     @Override
-    public List<Group> getGroupByName(String name) {
+    public List<StudentGroup> getGroupByName(String name) {
         return groupRepository.findAllByName(name);
     }
 

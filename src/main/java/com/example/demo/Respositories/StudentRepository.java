@@ -11,5 +11,4 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByDateOfBirthBefore(LocalDate date);
     List<Student> findAllByGroupIdEquals(Long groupId);
     List<Student> findAllByName(String name);
-
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Stud")
+@RequestMapping("/stud")
 public class StudController {
     private final StudentService studentService;
 
@@ -17,18 +17,25 @@ public class StudController {
         this.studentService = studentService;
     }
 
-    @GetMapping(value = "/find", produces = "application/json")
+    @GetMapping("all")
+    public List<Student> showAllStudents(){
+        return studentService.showAllStudents();
+    }
+
+    @GetMapping(value = "/find")
     public List<Student> findStudentsByName(@RequestParam(value ="name") String name){
         return studentService.findStudentsByName(name);
     }
 
-    @GetMapping(value = "/find/adults", produces = "application/json")
+    @GetMapping(value = "/find/adults")
     public List<Student> findAdult(){
         return studentService.findStudentsAboveAge(18);
     }
 
     @PostMapping("/add")
-    public void addNewStudent(@RequestBody Student student){
+    public String addNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
+
+        return "New student added successfully";
     }
 }
