@@ -19,8 +19,9 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @PostMapping(value = "/addGroup", consumes = "application/json")
-    public String addGroup(@RequestBody StudentGroup studentGroup) {
+    @PostMapping(value = "/add")
+    public String addGroup(@RequestBody ArrayList<StudentGroup> studentGroup) {
+
         groupService.addNewGroup(studentGroup);
 
         return "New student added successfully";

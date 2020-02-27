@@ -6,7 +6,7 @@ import com.example.demo.Entities.Student;
 import java.util.ArrayList;
 
 public interface GroupService {
-    void addNewGroup(StudentGroup studentGroup);
+    void addNewGroup(ArrayList<StudentGroup> studentGroups);
 
     ArrayList<StudentGroup> getGroupByName(String name);
 

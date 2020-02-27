@@ -17,8 +17,10 @@ public class GroupServiceImpl implements GroupService {
     StudentRepository studentRepository;
 
     @Override
-    public void addNewGroup(StudentGroup studentGroup) {
-        groupRepository.save(studentGroup);
+    public void addNewGroup(ArrayList<StudentGroup> studentGroups) {
+        for(StudentGroup studentGroup: studentGroups){
+            groupRepository.save(studentGroup);
+        }
     }
 
     @Override
