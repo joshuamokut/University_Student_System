@@ -13,6 +13,6 @@ public class StudentMapper {
 
     public StudentDTO MapStudent(Student student){
         return new StudentDTO(student.getName(), student.getSurname(),
-                groupRepository.findFirstById(student.getId()).getName());
+                groupRepository.findFirstById(student.getGroupId()).getName());
     }
 }
