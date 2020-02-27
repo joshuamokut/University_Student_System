@@ -2,21 +2,16 @@ package com.example.demo.Utilities;
 
 import com.example.demo.Entities.Student;
 import com.example.demo.Respositories.GroupRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-
+@AllArgsConstructor
 @Component
 public class StudentMapper {
     private final GroupRepository groupRepository;
 
-    @Autowired
-    public StudentMapper(GroupRepository groupRepository){
-        this.groupRepository = groupRepository;
-    }
-
-    public StudentDto MapStudent(Student student){
-        return new StudentDto(student.getName(), student.getSurname(),
+    public StudentDTO MapStudent(Student student){
+        return new StudentDTO(student.getName(), student.getSurname(),
                 groupRepository.findFirstById(student.getId()).getName());
     }
 }

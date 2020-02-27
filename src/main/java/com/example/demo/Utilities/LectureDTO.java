@@ -1,6 +1,5 @@
 package com.example.demo.Utilities;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
-public class LectureDto {
+public class LectureDTO {
 
     private CustomDuration duration;
 
@@ -18,7 +17,7 @@ public class LectureDto {
 
     private CustomTime endTime;
 
-    private ArrayList<StudentDto> students;
+    private ArrayList<StudentDTO> students;
 
 
 }

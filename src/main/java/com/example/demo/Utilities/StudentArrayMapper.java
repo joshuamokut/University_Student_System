@@ -9,14 +9,14 @@ import java.util.ArrayList;
 public class StudentArrayMapper {
     private final StudentMapper studentMapper;
 
-    ArrayList<StudentDto> MapStudentDtoArray(ArrayList<Student>students){
-        ArrayList<StudentDto> studentDtos=new ArrayList<>();
+    ArrayList<StudentDTO> MapStudentDtoArray(ArrayList<Student>students){
+        ArrayList<StudentDTO> studentDTOS =new ArrayList<>();
 
         for(Student student: students){
 
-            studentDtos.add(studentMapper.MapStudent(student));
+            studentDTOS.add(studentMapper.MapStudent(student));
         }
 
-        return studentDtos;
+        return studentDTOS;
     }
 }

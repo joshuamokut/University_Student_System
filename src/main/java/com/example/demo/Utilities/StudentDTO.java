@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Data
 @AllArgsConstructor
-public class StudentDto {
+public class StudentDTO {
 
 
     private String name;

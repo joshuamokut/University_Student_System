@@ -4,7 +4,6 @@ import com.example.demo.Entities.Lecture;
 import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
@@ -16,8 +15,8 @@ public class LectureMapper {
     private final StudentArrayMapper studentArrayMapper;
 
 
-    public LectureDto MapLecture(Lecture lecture){
-        return new LectureDto(new CustomDuration(lecture.getStartDate().atTime(lecture.getStartTime()),
+    public LectureDTO MapLecture(Lecture lecture){
+        return new LectureDTO(new CustomDuration(lecture.getStartDate().atTime(lecture.getStartTime()),
                 lecture.getEndDate().atTime(lecture.getEndTime())),
                 lecture.getVenue(),
                 new CustomTime(lecture.getStartDate().atTime(lecture.getStartTime())),
