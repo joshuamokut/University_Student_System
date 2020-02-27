@@ -1,35 +1,34 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
+import com.example.demo.Mappers.StudentArrayMapper;
 import com.example.demo.Services.StudentService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-
+@AllArgsConstructor
 @RestController
 @RequestMapping("/students")
 public class StudController {
     private final StudentService studentService;
-
-    @Autowired
-    public StudController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    private final StudentArrayMapper studentArrayMapper;
 
     @GetMapping("all")
-    public ArrayList<Student> showAllStudents(){
-        return studentService.showAllStudents();
+    public ArrayList<StudentDTO> showAllStudents(){
+        return studentArrayMapper.MapStudentsToArray(studentService.showAllStudents());
     }
 
     @GetMapping(value = "/find")
-    public ArrayList<Student> findStudentsByName(@RequestParam(value ="name") String name){
-        return studentService.findStudentsByName(name);
+    public ArrayList<StudentDTO> findStudentsByName(@RequestParam(value ="name") String name){
+        return studentArrayMapper.MapStudentsToArray(studentService.findStudentsByName(name));
     }
 
     @GetMapping(value = "/find/adults")
-    public ArrayList<Student> findAdult(){
-        return studentService.findStudentsAboveAge(18);
+    public ArrayList<StudentDTO> findAdult(){
+        return studentArrayMapper.MapStudentsToArray(studentService.findStudentsAboveAge(18));
     }
 
     @PostMapping("/add")

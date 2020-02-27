@@ -3,10 +3,12 @@ package com.example.demo.Mappers;
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 @AllArgsConstructor
+@Component
 public class StudentArrayMapper {
     private final StudentMapper studentMapper;
 
