@@ -39,7 +39,7 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public ArrayList<Lecture> showAll() {
-        return lectureRepository.findall();
+        return lectureRepository.findAllBy();
     }
 
     @Override

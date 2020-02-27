@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
-    ArrayList<Lecture> findall();
+    ArrayList<Lecture> findAllBy();
 
     ArrayList<Lecture> findAllByStartDateEquals(LocalDate date);
 
