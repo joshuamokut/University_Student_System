@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public interface StudentService {
-    void addNewStudent(Student student);
+    void addNewStudent(ArrayList<Student> students);
 
     ArrayList<Student> findStudentsByName(String name);
 

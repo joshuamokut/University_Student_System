@@ -16,8 +16,10 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     @Override
-    public void addNewStudent(Student student) {
-        studentRepository.save(student);
+    public void addNewStudent(ArrayList<Student> students) {
+        for(Student student: students) {
+            studentRepository.save(student);
+        }
     }
 
     @Override

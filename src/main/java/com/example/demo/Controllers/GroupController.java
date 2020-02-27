@@ -28,12 +28,12 @@ public class GroupController {
 
     }
 
-    @GetMapping("/byName")
+    @GetMapping("/find")
     public ArrayList<StudentGroup> getGroupsByName(@RequestParam(value = "name", defaultValue = "oaken") String name) {
         return groupService.getGroupByName(name);
     }
 
-    @GetMapping("/getStudents")
+    @GetMapping("/students")
     public ArrayList<Student> getStudentsInGroup(@RequestParam() String name) {
         return groupService.findStudentsInGroup(name);
     }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/stud")
+@RequestMapping("/students")
 public class StudController {
     private final StudentService studentService;
 
@@ -33,8 +33,8 @@ public class StudController {
     }
 
     @PostMapping("/add")
-    public String addNewStudent(@RequestBody Student student){
-        studentService.addNewStudent(student);
+    public String addNewStudent(@RequestBody ArrayList<Student> students){
+        studentService.addNewStudent(students);
 
         return "New student added successfully";
     }
