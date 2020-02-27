@@ -21,8 +21,10 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public void addEvent(Lecture event) {
-        lectureRepository.save(event);
+    public void addEvent(ArrayList<Lecture> event) {
+        for(Lecture lecture: event) {
+            lectureRepository.save(lecture);
+        }
     }
 
     @Override

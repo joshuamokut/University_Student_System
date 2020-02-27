@@ -27,7 +27,7 @@ public class LectureController {
 
 
     @PostMapping("add")
-    String AddEvent(@RequestBody Lecture lecture){
+    String AddEvent(@RequestBody ArrayList<Lecture> lecture){
         lectureService.addEvent(lecture);
 
         return "Event Added\n";

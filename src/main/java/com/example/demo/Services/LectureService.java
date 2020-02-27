@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public interface LectureService {
     ArrayList<Lecture> showEventsToday();
 
-    void addEvent(Lecture event);
+    void addEvent(ArrayList<Lecture> event);
 
     ArrayList<Lecture> showEventsOn(LocalDate date);
 
