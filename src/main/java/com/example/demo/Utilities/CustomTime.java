@@ -17,7 +17,7 @@ public class CustomTime {
         this.time+=time.substring(5, 7)+".";
         this.time+=time.substring(0, 4)+" ";
 
-        this.time+=time.substring(13, 18);
+        this.time+=time.substring(11);
     }
 
     public String getTime() {
