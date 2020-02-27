@@ -6,7 +6,7 @@ public class CustomTime {
 
     String time;
 
-    protected CustomTime(LocalDateTime time){
+    public CustomTime(LocalDateTime time){
         CustomTimeBuilder(time.toString());
     }
 

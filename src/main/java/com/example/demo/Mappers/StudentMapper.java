@@ -1,5 +1,6 @@
-package com.example.demo.Utilities;
+package com.example.demo.Mappers;
 
+import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
 import com.example.demo.Respositories.GroupRepository;
 import lombok.AllArgsConstructor;

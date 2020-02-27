@@ -1,5 +1,7 @@
-package com.example.demo.Utilities;
+package com.example.demo.DTO;
 
+import com.example.demo.Utilities.CustomDuration;
+import com.example.demo.Utilities.CustomTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

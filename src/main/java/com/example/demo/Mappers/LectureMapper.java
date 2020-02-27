@@ -1,8 +1,11 @@
-package com.example.demo.Utilities;
+package com.example.demo.Mappers;
 
+import com.example.demo.DTO.LectureDTO;
 import com.example.demo.Entities.Lecture;
 import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
+import com.example.demo.Utilities.CustomDuration;
+import com.example.demo.Utilities.CustomTime;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

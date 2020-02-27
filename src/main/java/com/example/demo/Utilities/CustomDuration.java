@@ -8,7 +8,7 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 public class CustomDuration {
     private String time;
 
-    protected CustomDuration(LocalDateTime start, LocalDateTime end){
+    public CustomDuration(LocalDateTime start, LocalDateTime end){
         long duration=start.until(end, MINUTES);
         this.time=DurationTimeBuilder(Hours(duration), Minutes(duration));
     }
