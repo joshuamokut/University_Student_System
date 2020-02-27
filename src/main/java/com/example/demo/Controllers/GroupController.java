@@ -1,23 +1,23 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Entities.Student;
+import com.example.demo.Mappers.StudentArrayMapper;
 import com.example.demo.Services.GroupService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/groups")
 public class GroupController {
 
     private final GroupService groupService;
-
-    @Autowired
-    public GroupController(GroupService groupService) {
-        this.groupService = groupService;
-    }
+    private final StudentArrayMapper studentArrayMapper;
 
     @PostMapping(value = "/add")
     public String addGroup(@RequestBody ArrayList<StudentGroup> studentGroup) {
@@ -29,12 +29,12 @@ public class GroupController {
     }
 
     @GetMapping("/find")
-    public ArrayList<StudentGroup> getGroupsByName(@RequestParam(value = "name", defaultValue = "oaken") String name) {
+    public ArrayList<StudentGroup> getGroupsByName(@RequestParam String name) {
         return groupService.getGroupByName(name);
     }
 
     @GetMapping("/students")
-    public ArrayList<Student> getStudentsInGroup(@RequestParam() String name) {
-        return groupService.findStudentsInGroup(name);
+    public ArrayList<StudentDTO> getStudentsInGroup(@RequestParam String name) {
+        return studentArrayMapper.MapStudentsToArray(groupService.findStudentsInGroup(name));
     }
 }
