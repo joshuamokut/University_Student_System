@@ -2,6 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.Entities.SchoolEvent;
 import com.example.demo.Services.SchoolEventService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,6 +65,7 @@ public class SchoolEventController {
         }
     }
 
+    @GetMapping("/title")
     ArrayList<SchoolEvent> ShowEvent(@RequestParam String eventName){
         return schoolEventService.showEvent(eventName);
     }
