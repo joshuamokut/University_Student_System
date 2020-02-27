@@ -5,7 +5,6 @@ import com.example.demo.Entities.Student;
 import com.example.demo.Mappers.StudentArrayMapper;
 import com.example.demo.Services.StudentService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
