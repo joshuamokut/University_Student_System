@@ -7,5 +7,6 @@ import java.util.ArrayList;
 
 public interface GroupRepository extends JpaRepository<StudentGroup, Long> {
     StudentGroup findFirstByName(String name);
+    StudentGroup findFirstById(Long id);
     ArrayList<StudentGroup> findAllByName(String name);
 }

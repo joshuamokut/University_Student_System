@@ -1,0 +1,64 @@
+package com.example.demo.Services;
+
+import com.example.demo.Entities.Lecture;
+import com.example.demo.Respositories.LectureRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
+@Service
+public class LectureServiceImpl implements LectureService {
+
+    private LectureRepository lectureRepository;
+
+    public LectureServiceImpl(LectureRepository lectureRepository) {
+        this.lectureRepository = lectureRepository;
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsToday() {
+        return lectureRepository.findAllByStartDateEquals(LocalDate.now());
+    }
+
+    @Override
+    public void addEvent(Lecture event) {
+        lectureRepository.save(event);
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsOn(LocalDate date) {
+        return lectureRepository.findAllByStartDateEquals(date);
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsOn(LocalDate date, LocalTime time) {
+        return lectureRepository.findAllByStartDateAndStartTime(date, time);
+    }
+
+    @Override
+    public ArrayList<Lecture> showAll() {
+        return lectureRepository.findall();
+    }
+
+    @Override
+    public ArrayList<Lecture> showEvent(String eventName) {
+        return lectureRepository.findAllByEventName(eventName);
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsAt(String venue) {
+        return lectureRepository.findAllByVenue(venue);
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsAt(String venue, LocalDate date) {
+        return lectureRepository.findAllByVenueAndStartDate(venue, date);
+    }
+
+    @Override
+    public ArrayList<Lecture> showEventsAt(String venue, LocalDate date, LocalTime time) {
+        return lectureRepository.findAllByVenueAndStartDateAndStartTime(venue, date, time);
+    }
+}

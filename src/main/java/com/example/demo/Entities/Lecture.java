@@ -1,8 +1,6 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Utilities.SchoolEventType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,28 +9,27 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Getter
-@Setter
+@Data
 @Entity
-public class SchoolEvent {
+public class Lecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private SchoolEventType schoolEventType;
     private String venue;
     private String eventName;
     private LocalDate startDate;
     private LocalTime startTime;
     private LocalDate endDate;
     private LocalTime endTime;
+    private String groupName;
 
-    protected SchoolEvent() {
+    protected Lecture() {
     }
 
-    public SchoolEvent(SchoolEventType schoolEventType, String venue, String eventName, LocalDate startDate, LocalTime startTime) {
-        this.schoolEventType = schoolEventType;
+    public Lecture(String venue, String eventName, LocalDate startDate, LocalTime startTime, String groupName) {
         this.venue = venue;
+        this.groupName=groupName;
         this.eventName = eventName;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -46,13 +43,7 @@ public class SchoolEvent {
         this.id = id;
     }
 
-    public SchoolEventType getSchoolEventType() {
-        return schoolEventType;
-    }
 
-    public void setSchoolEventType(SchoolEventType schoolEventType) {
-        this.schoolEventType = schoolEventType;
-    }
 
     public String getVenue() {
         return venue;
