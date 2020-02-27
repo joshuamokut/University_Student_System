@@ -4,20 +4,17 @@ import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Entities.Student;
 import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@AllArgsConstructor
 @Service
 public class GroupServiceImpl implements GroupService {
 
     GroupRepository groupRepository;
     StudentRepository studentRepository;
-
-    public GroupServiceImpl(GroupRepository groupRepository, StudentRepository studentRepository) {
-        this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
-    }
 
     @Override
     public void addNewGroup(StudentGroup studentGroup) {
