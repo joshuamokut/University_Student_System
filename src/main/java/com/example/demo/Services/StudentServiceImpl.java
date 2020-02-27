@@ -3,20 +3,18 @@ package com.example.demo.Services;
 import com.example.demo.Entities.Student;
 import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+@AllArgsConstructor
 @Service
 public class StudentServiceImpl implements StudentService {
 
 
     private StudentRepository studentRepository;
-
-    public StudentServiceImpl(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
     @Override
     public void addNewStudent(Student student) {
