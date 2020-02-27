@@ -24,7 +24,7 @@ public class LectureMapper {
                 lecture.getVenue(),
                 new CustomTime(lecture.getStartDate().atTime(lecture.getStartTime())),
                 new CustomTime(lecture.getEndDate().atTime(lecture.getEndTime())),
-                studentArrayMapper.MapStudentDtoArray(studentRepository.findAllByGroupIdEquals(groupRepository.findFirstByName(lecture.getGroupName()).getId()))
+                studentArrayMapper.MapStudentsToArray(studentRepository.findAllByGroupIdEquals(groupRepository.findFirstByName(lecture.getGroupName()).getId()))
                 );
     }
 }

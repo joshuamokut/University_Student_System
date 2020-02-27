@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class StudentArrayMapper {
     private final StudentMapper studentMapper;
 
-    public ArrayList<StudentDTO> MapStudentDtoArray(ArrayList<Student>students){
+    public ArrayList<StudentDTO> MapStudentsToArray(ArrayList<Student>students){
         ArrayList<StudentDTO> studentDTOS =new ArrayList<>();
 
         for(Student student: students){
