@@ -17,10 +17,6 @@ public interface SchoolEventRepository extends JpaRepository<SchoolEvent, Long> 
 
     ArrayList<SchoolEvent> findAllByEventName(String eventName);
 
-    ArrayList<SchoolEvent> findAllByStartDateEqualsAndSchoolEventType(LocalDate date, SchoolEventType schoolEventType);
-
-    ArrayList<SchoolEvent> findAllByEventNameAndStartDate(String eventName, LocalDate date);
-
     ArrayList<SchoolEvent> findAllByVenue(String venue);
 
     ArrayList<SchoolEvent> findAllByVenueAndStartDate(String venue, LocalDate date);
