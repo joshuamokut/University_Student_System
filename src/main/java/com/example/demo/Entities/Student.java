@@ -1,15 +1,13 @@
 package com.example.demo.Entities;
 
 import com.example.demo.Utilities.Gender;
+import javafx.scene.Group;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.jni.Local;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -29,16 +27,16 @@ public class Student {
     private String surname;
     private LocalDate dateOfBirth;
     private Gender gender;
-    private Long groupId;
+    @OneToOne private StudentGroup group;
 
     protected Student(){}
 
-    public Student(String name, String surname, String dateOfBirth, Gender gender, Long groupId) {
+    public Student(String name, String surname, String dateOfBirth, Gender gender, StudentGroup group) {
         this.name=name;
         this.surname=surname;
         this.dateOfBirth=LocalDate.parse(dateOfBirth,  DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.gender=gender;
-        this.groupId=groupId;
+        this.group=group;
     }
 
 
