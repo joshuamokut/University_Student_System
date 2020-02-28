@@ -5,8 +5,6 @@ import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Lecture;
 import com.example.demo.Entities.Student;
 import com.example.demo.Entities.StudentGroup;
-import com.example.demo.Respositories.GroupRepository;
-import com.example.demo.Respositories.StudentRepository;
 import com.example.demo.Utilities.CustomDuration;
 import com.example.demo.Utilities.CustomTime;
 import lombok.AllArgsConstructor;
@@ -18,10 +16,9 @@ import java.util.List;
 @Component
 public class LectureMapper {
 
-    private final StudentRepository studentRepository;
-    private final GroupRepository groupRepository;
     private final StudentMapper studentMapper;
     private List<StudentDTO> studentDTOList;
+    private List<LectureDTO> lectureDTOS;
 
     public LectureDTO mapLecture(Lecture lecture){
         studentDTOList.clear();
@@ -39,5 +36,15 @@ public class LectureMapper {
                 new CustomTime(lecture.getEndDate().atTime(lecture.getEndTime())),
                 studentDTOList
                 );
+    }
+
+    public List<LectureDTO>MapLecturesToArray(List<Lecture> lectures){
+
+        lectureDTOS.clear();
+        for(Lecture lecture: lectures){
+            lectureDTOS.add(mapLecture(lecture));
+        }
+
+        return lectureDTOS;
     }
 }

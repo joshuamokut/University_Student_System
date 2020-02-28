@@ -2,11 +2,9 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.StudentGroup;
-import com.example.demo.Entities.Student;
-import com.example.demo.Mappers.StudentArrayMapper;
+import com.example.demo.Mappers.StudentMapper;
 import com.example.demo.Services.GroupService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
 public class GroupController {
 
     private final GroupService groupService;
-    private final StudentArrayMapper studentArrayMapper;
+    private final StudentMapper studentMapper;
 
     @PostMapping(value = "/add")
     public String addGroup(@RequestBody List<StudentGroup> studentGroup) {
@@ -35,6 +33,6 @@ public class GroupController {
 
     @GetMapping("/students")
     public List<StudentDTO> getStudentsInGroup(@RequestParam String name) {
-        return studentArrayMapper.MapStudentsToArray(groupService.findStudentsInGroup(name));
+        return studentMapper.MapStudentsToArray(groupService.findStudentsInGroup(name));
     }
 }

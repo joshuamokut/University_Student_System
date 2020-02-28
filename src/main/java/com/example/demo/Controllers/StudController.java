@@ -2,7 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
-import com.example.demo.Mappers.StudentArrayMapper;
+import com.example.demo.Mappers.StudentMapper;
 import com.example.demo.Services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +14,21 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudController {
     private final StudentService studentService;
-    private final StudentArrayMapper studentArrayMapper;
+    private final StudentMapper studentMapper;
 
     @GetMapping("all")
     public List<StudentDTO> showAllStudents(){
-        return studentArrayMapper.MapStudentsToArray(studentService.showAllStudents());
+        return studentMapper.MapStudentsToArray(studentService.showAllStudents());
     }
 
     @GetMapping(value = "/find")
     public List<StudentDTO> findStudentsByName(@RequestParam(value ="name") String name){
-        return studentArrayMapper.MapStudentsToArray(studentService.findStudentsByName(name));
+        return studentMapper.MapStudentsToArray(studentService.findStudentsByName(name));
     }
 
     @GetMapping(value = "/find/adults")
     public List<StudentDTO> findAdult(){
-        return studentArrayMapper.MapStudentsToArray(studentService.findStudentsAboveAge(18));
+        return studentMapper.MapStudentsToArray(studentService.findStudentsAboveAge(18));
     }
 
     @PostMapping("/add")

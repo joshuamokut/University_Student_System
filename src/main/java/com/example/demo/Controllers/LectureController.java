@@ -2,7 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DTO.LectureDTO;
 import com.example.demo.Entities.Lecture;
-import com.example.demo.Mappers.LectureArrayMapper;
+import com.example.demo.Mappers.LectureMapper;
 import com.example.demo.Services.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +18,11 @@ import java.util.List;
 public class LectureController {
 
     private final LectureService lectureService;
-    private final LectureArrayMapper lectureArrayMapper;
+    private final LectureMapper lectureMapper;
     @Autowired
-    public LectureController(LectureService lectureService, LectureArrayMapper lectureArrayMapper) {
+    public LectureController(LectureService lectureService, LectureMapper lectureMapper) {
         this.lectureService = lectureService;
-        this.lectureArrayMapper = lectureArrayMapper;
+        this.lectureMapper = lectureMapper;
     }
 
 
@@ -35,18 +35,18 @@ public class LectureController {
 
     @GetMapping("all")
     List<LectureDTO> ShowAll(){
-        return lectureArrayMapper.MapLecturesToArray(lectureService.showAll());
+        return lectureMapper.MapLecturesToArray(lectureService.showAll());
     }
 
     @GetMapping("today")
     List<LectureDTO> ShowToday(){
-        return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsToday());
+        return lectureMapper.MapLecturesToArray(lectureService.showEventsToday());
     }
 
     @GetMapping("date")
     List<LectureDTO> ShowEventsOn(@RequestParam String date){
         try {
-            return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsOn(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+            return lectureMapper.MapLecturesToArray(lectureService.showEventsOn(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
         }catch (DateTimeParseException e) {
             return null;
         }
@@ -55,7 +55,7 @@ public class LectureController {
     @GetMapping("date/time")
     List<LectureDTO> ShowEventsOn(@RequestParam String date, @RequestParam String time){
         try {
-            return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsOn(
+            return lectureMapper.MapLecturesToArray(lectureService.showEventsOn(
                     LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy")),
                     LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
             ));
@@ -67,19 +67,19 @@ public class LectureController {
 
     @GetMapping("/title")
     List<LectureDTO> ShowEvent(@RequestParam String eventName){
-        return lectureArrayMapper.MapLecturesToArray(lectureService.showEvent(eventName));
+        return lectureMapper.MapLecturesToArray(lectureService.showEvent(eventName));
     }
 
     @GetMapping("venue")
     List<LectureDTO> ShowEventsAt(@RequestParam String venue)
     {
-        return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsAt(venue));
+        return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(venue));
     }
 
     @GetMapping("venue/date")
     List<LectureDTO> ShowEventsAt(@RequestParam String venue, @RequestParam String date){
         try{
-            return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsAt(
+            return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
             ));
 
@@ -91,7 +91,7 @@ public class LectureController {
     @GetMapping("venue/date/time")
     List<LectureDTO> ShowEventsAt(@RequestParam String venue, @RequestParam String date, @RequestParam String time){
         try{
-            return lectureArrayMapper.MapLecturesToArray(lectureService.showEventsAt(
+            return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                             LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
             ));
