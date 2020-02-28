@@ -2,10 +2,8 @@ package com.example.demo.Entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
@@ -17,6 +15,9 @@ public class StudentGroup {
     private Long id;
     @NonNull private String name;
     @NonNull private String description;
+    @NonNull
+    @OneToMany
+    private Set<Student> students;
 
     protected StudentGroup(){}
 
