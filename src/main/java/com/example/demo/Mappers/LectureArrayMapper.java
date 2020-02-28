@@ -5,18 +5,19 @@ import com.example.demo.Entities.Lecture;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Component
 public class LectureArrayMapper {
     private final LectureMapper lectureMapper;
+    private List<LectureDTO> lectureDTOS;
 
-    public ArrayList<LectureDTO>MapLecturesToArray(ArrayList<Lecture> lectures){
-        ArrayList<LectureDTO> lectureDTOS=new ArrayList<>();
+    public List<LectureDTO>MapLecturesToArray(List<Lecture> lectures){
 
+        lectureDTOS.clear();
         for(Lecture lecture: lectures){
-            lectureDTOS.add(lectureMapper.MapLecture(lecture));
+            lectureDTOS.add(lectureMapper.mapLecture(lecture));
         }
 
         return lectureDTOS;

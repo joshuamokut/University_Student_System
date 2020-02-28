@@ -5,15 +5,17 @@ import com.example.demo.Entities.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Component
 public class StudentArrayMapper {
     private final StudentMapper studentMapper;
+    private List<StudentDTO> studentDTOS;
 
-    public ArrayList<StudentDTO> MapStudentsToArray(ArrayList<Student>students){
-        ArrayList<StudentDTO> studentDTOS =new ArrayList<>();
+    public List<StudentDTO> MapStudentsToArray(List<Student>students){
+
+        studentDTOS.clear();
 
         for(Student student: students){
 

@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class Lecture {
     @NonNull private LocalTime endTime;
     @OneToMany
     @NonNull
-    private Set<StudentGroup> studentGroups;
+    private List<StudentGroup> studentGroups;
 
     protected Lecture() {
     }

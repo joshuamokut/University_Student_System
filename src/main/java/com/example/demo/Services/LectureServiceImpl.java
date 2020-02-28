@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -16,49 +16,49 @@ public class LectureServiceImpl implements LectureService {
     private final LectureRepository lectureRepository;
 
     @Override
-    public ArrayList<Lecture> showEventsToday() {
+    public List<Lecture> showEventsToday() {
         return lectureRepository.findAllByStartDateEquals(LocalDate.now());
     }
 
     @Override
-    public void addEvent(ArrayList<Lecture> event) {
+    public void addEvent(List<Lecture> event) {
         for(Lecture lecture: event) {
             lectureRepository.save(lecture);
         }
     }
 
     @Override
-    public ArrayList<Lecture> showEventsOn(LocalDate date) {
+    public List<Lecture> showEventsOn(LocalDate date) {
         return lectureRepository.findAllByStartDateEquals(date);
     }
 
     @Override
-    public ArrayList<Lecture> showEventsOn(LocalDate date, LocalTime time) {
+    public List<Lecture> showEventsOn(LocalDate date, LocalTime time) {
         return lectureRepository.findAllByStartDateAndStartTime(date, time);
     }
 
     @Override
-    public ArrayList<Lecture> showAll() {
+    public List<Lecture> showAll() {
         return lectureRepository.findAllBy();
     }
 
     @Override
-    public ArrayList<Lecture> showEvent(String eventName) {
+    public List<Lecture> showEvent(String eventName) {
         return lectureRepository.findAllByEventName(eventName);
     }
 
     @Override
-    public ArrayList<Lecture> showEventsAt(String venue) {
+    public List<Lecture> showEventsAt(String venue) {
         return lectureRepository.findAllByVenue(venue);
     }
 
     @Override
-    public ArrayList<Lecture> showEventsAt(String venue, LocalDate date) {
+    public List<Lecture> showEventsAt(String venue, LocalDate date) {
         return lectureRepository.findAllByVenueAndStartDate(venue, date);
     }
 
     @Override
-    public ArrayList<Lecture> showEventsAt(String venue, LocalDate date, LocalTime time) {
+    public List<Lecture> showEventsAt(String venue, LocalDate date, LocalTime time) {
         return lectureRepository.findAllByVenueAndStartDateAndStartTime(venue, date, time);
     }
 }

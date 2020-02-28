@@ -5,23 +5,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
-    ArrayList<Lecture> findAllBy();
+    List<Lecture> findAllBy();
 
-    ArrayList<Lecture> findAllByStartDateEquals(LocalDate date);
+    List<Lecture> findAllByStartDateEquals(LocalDate date);
 
-    ArrayList<Lecture> findAllByStartDateAndStartTime(LocalDate date, LocalTime time);
+    List<Lecture> findAllByStartDateAndStartTime(LocalDate date, LocalTime time);
 
-    ArrayList<Lecture> findAllByEventName(String eventName);
+    List<Lecture> findAllByEventName(String eventName);
 
-    ArrayList<Lecture> findAllByVenue(String venue);
+    List<Lecture> findAllByVenue(String venue);
 
-    ArrayList<Lecture> findAllByVenueAndStartDate(String venue, LocalDate date);
+    List<Lecture> findAllByVenueAndStartDate(String venue, LocalDate date);
 
-    ArrayList<Lecture> findAllByVenueAndStartDateAndStartTime(String venue, LocalDate date, LocalTime time);
+    List<Lecture> findAllByVenueAndStartDateAndStartTime(String venue, LocalDate date, LocalTime time);
 
 
 }

@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -20,7 +20,7 @@ public class GroupController {
     private final StudentArrayMapper studentArrayMapper;
 
     @PostMapping(value = "/add")
-    public String addGroup(@RequestBody ArrayList<StudentGroup> studentGroup) {
+    public String addGroup(@RequestBody List<StudentGroup> studentGroup) {
 
         groupService.addNewGroup(studentGroup);
 
@@ -29,12 +29,12 @@ public class GroupController {
     }
 
     @GetMapping("/find")
-    public ArrayList<StudentGroup> getGroupsByName(@RequestParam String name) {
+    public List<StudentGroup> getGroupsByName(@RequestParam String name) {
         return groupService.getGroupByName(name);
     }
 
     @GetMapping("/students")
-    public ArrayList<StudentDTO> getStudentsInGroup(@RequestParam String name) {
+    public List<StudentDTO> getStudentsInGroup(@RequestParam String name) {
         return studentArrayMapper.MapStudentsToArray(groupService.findStudentsInGroup(name));
     }
 }

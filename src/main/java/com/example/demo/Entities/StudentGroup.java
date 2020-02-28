@@ -3,6 +3,7 @@ package com.example.demo.Entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,7 +18,7 @@ public class StudentGroup {
     @NonNull private String description;
     @NonNull
     @OneToMany
-    private Set<Student> students;
+    private List<Student> students;
 
     protected StudentGroup(){}
 

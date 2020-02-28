@@ -7,7 +7,7 @@ import com.example.demo.Services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -17,22 +17,22 @@ public class StudController {
     private final StudentArrayMapper studentArrayMapper;
 
     @GetMapping("all")
-    public ArrayList<StudentDTO> showAllStudents(){
+    public List<StudentDTO> showAllStudents(){
         return studentArrayMapper.MapStudentsToArray(studentService.showAllStudents());
     }
 
     @GetMapping(value = "/find")
-    public ArrayList<StudentDTO> findStudentsByName(@RequestParam(value ="name") String name){
+    public List<StudentDTO> findStudentsByName(@RequestParam(value ="name") String name){
         return studentArrayMapper.MapStudentsToArray(studentService.findStudentsByName(name));
     }
 
     @GetMapping(value = "/find/adults")
-    public ArrayList<StudentDTO> findAdult(){
+    public List<StudentDTO> findAdult(){
         return studentArrayMapper.MapStudentsToArray(studentService.findStudentsAboveAge(18));
     }
 
     @PostMapping("/add")
-    public String addNewStudent(@RequestBody ArrayList<Student> students){
+    public String addNewStudent(@RequestBody List<Student> students){
         studentService.addNewStudent(students);
 
         return "New student added successfully";

@@ -7,7 +7,7 @@ import com.example.demo.Respositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -17,20 +17,20 @@ public class GroupServiceImpl implements GroupService {
     StudentRepository studentRepository;
 
     @Override
-    public void addNewGroup(ArrayList<StudentGroup> studentGroups) {
+    public void addNewGroup(List<StudentGroup> studentGroups) {
         for(StudentGroup studentGroup: studentGroups){
             groupRepository.save(studentGroup);
         }
     }
 
     @Override
-    public ArrayList<StudentGroup> getGroupByName(String name) {
+    public List<StudentGroup> getGroupByName(String name) {
         return groupRepository.findAllByName(name);
     }
 
 
     @Override
-    public ArrayList<Student> findStudentsInGroup(String groupName) {
+    public List<Student> findStudentsInGroup(String groupName) {
         return studentRepository.findAllByGroupIdEquals(groupRepository.findFirstByName(groupName).getId());
     }
 }

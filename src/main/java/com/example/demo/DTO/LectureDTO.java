@@ -5,7 +5,7 @@ import com.example.demo.Utilities.CustomTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class LectureDTO {
 
     private CustomTime endTime;
 
-    private ArrayList<StudentDTO> students;
+    private List<StudentDTO> students;
 
 
 }

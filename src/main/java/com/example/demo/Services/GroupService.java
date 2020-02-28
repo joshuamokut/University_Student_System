@@ -3,13 +3,13 @@ package com.example.demo.Services;
 import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Entities.Student;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface GroupService {
-    void addNewGroup(ArrayList<StudentGroup> studentGroups);
+    void addNewGroup(List<StudentGroup> studentGroups);
 
-    ArrayList<StudentGroup> getGroupByName(String name);
+    List<StudentGroup> getGroupByName(String name);
 
-    ArrayList<Student> findStudentsInGroup(String groupName);
+    List<Student> findStudentsInGroup(String groupName);
 
 }

@@ -1,15 +1,17 @@
 package com.example.demo.Respositories;
 
 import com.example.demo.Entities.Student;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    ArrayList<Student> findByDateOfBirthBefore(LocalDate date);
-    ArrayList<Student> findAllByGroupIdEquals(Long groupId);
-    ArrayList<Student> findAllByName(String name);
-    ArrayList<Student> findAll();
+    List<Student> findByDateOfBirthBefore(LocalDate date);
+    List<Student> findAllByGroupIdEquals(Long groupId);
+    List<Student> findAllByName(String name);
+    @NotNull
+    @Override
+    List<Student> findAll();
 }
