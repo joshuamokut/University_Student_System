@@ -1,15 +1,14 @@
 package com.example.demo.Entities;
 
+import javafx.scene.Group;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
@@ -25,7 +24,9 @@ public class Lecture {
     @NonNull private LocalTime startTime;
     @NonNull private LocalDate endDate;
     @NonNull private LocalTime endTime;
-    @NonNull private String groupName;
+    @OneToMany
+    @NonNull
+    private Set<StudentGroup> studentGroups;
 
     protected Lecture() {
     }
