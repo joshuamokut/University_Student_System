@@ -22,7 +22,7 @@ public class GroupController {
 
         groupService.addNewGroup(studentGroup);
 
-        return "New student added successfully";
+        return "New group added successfully";
 
     }
 
@@ -34,5 +34,10 @@ public class GroupController {
     @GetMapping("/students")
     public List<StudentDTO> getStudentsInGroup(@RequestParam String name) {
         return groupService.findStudentsInGroup(name);
+    }
+
+    @GetMapping("/all")
+    public List<StudentGroupDTO> getAll(){
+        return groupService.showAllGroups();
     }
 }
