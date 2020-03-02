@@ -1,6 +1,8 @@
 package com.example.demo.Services;
 
+import com.example.demo.DTO.LectureDTO;
 import com.example.demo.Entities.Lecture;
+import com.example.demo.Mappers.LectureMapper;
 import com.example.demo.Respositories.LectureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,11 @@ import java.util.List;
 public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
+    private final LectureMapper lectureMapper;
 
     @Override
-    public List<Lecture> showEventsToday() {
-        return lectureRepository.findAllByStartDateEquals(LocalDate.now());
+    public List<LectureDTO> showEventsToday() {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByStartDateEquals(LocalDate.now()));
     }
 
     @Override
@@ -28,37 +31,37 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public List<Lecture> showEventsOn(LocalDate date) {
-        return lectureRepository.findAllByStartDateEquals(date);
+    public List<LectureDTO> showEventsOn(LocalDate date) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByStartDateEquals(date));
     }
 
     @Override
-    public List<Lecture> showEventsOn(LocalDate date, LocalTime time) {
-        return lectureRepository.findAllByStartDateAndStartTime(date, time);
+    public List<LectureDTO> showEventsOn(LocalDate date, LocalTime time) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByStartDateAndStartTime(date, time));
     }
 
     @Override
-    public List<Lecture> showAll() {
-        return lectureRepository.findAllBy();
+    public List<LectureDTO> showAll() {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllBy());
     }
 
     @Override
-    public List<Lecture> showEvent(String eventName) {
-        return lectureRepository.findAllByEventName(eventName);
+    public List<LectureDTO> showEvent(String eventName) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByEventName(eventName));
     }
 
     @Override
-    public List<Lecture> showEventsAt(String venue) {
-        return lectureRepository.findAllByVenue(venue);
+    public List<LectureDTO> showEventsAt(String venue) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByVenue(venue));
     }
 
     @Override
-    public List<Lecture> showEventsAt(String venue, LocalDate date) {
-        return lectureRepository.findAllByVenueAndStartDate(venue, date);
+    public List<LectureDTO> showEventsAt(String venue, LocalDate date) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByVenueAndStartDate(venue, date));
     }
 
     @Override
-    public List<Lecture> showEventsAt(String venue, LocalDate date, LocalTime time) {
-        return lectureRepository.findAllByVenueAndStartDateAndStartTime(venue, date, time);
+    public List<LectureDTO> showEventsAt(String venue, LocalDate date, LocalTime time) {
+        return lectureMapper.mapLecturesToArrayDTO(lectureRepository.findAllByVenueAndStartDateAndStartTime(venue, date, time));
     }
 }

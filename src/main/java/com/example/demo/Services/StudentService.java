@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
 
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.List;
 public interface StudentService {
     void addNewStudent(List<Student> students);
 
-    List<Student> findStudentsByName(String name);
+    List<StudentDTO> findStudentsByName(String name);
 
-    List<Student> findStudentsAboveAge(int age);
+    List<StudentDTO> findStudentsAboveAge(int age);
 
-    List<Student> showAllStudents();
+    List<StudentDTO> showAllStudents();
 }
