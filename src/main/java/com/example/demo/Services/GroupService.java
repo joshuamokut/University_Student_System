@@ -14,4 +14,5 @@ public interface GroupService {
 
     List<StudentDTO> findStudentsInGroup(String groupName);
 
+    List<StudentGroupDTO> showAllGroups();
 }

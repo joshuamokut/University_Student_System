@@ -3,7 +3,6 @@ package com.example.demo.Services;
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.DTO.StudentGroupDTO;
 import com.example.demo.Entities.StudentGroup;
-import com.example.demo.Entities.Student;
 import com.example.demo.Mappers.StudentGroupMapper;
 import com.example.demo.Mappers.StudentMapper;
 import com.example.demo.Respositories.GroupRepository;
@@ -25,9 +24,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void addNewGroup(List<StudentGroup> studentGroups) {
-        for(StudentGroup studentGroup: studentGroups){
-            groupRepository.save(studentGroup);
-        }
+        groupRepository.saveAll(studentGroups);
     }
 
     @Override
@@ -38,7 +35,12 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<StudentDTO> findStudentsInGroup(String groupName) {
-        return studentMapper.mapStudentsToDTOArray(studentRepository.findAllByGroupIdEquals(
+        return studentMapper.mapStudentsToDTOArray(studentRepository.findAllByStudentGroupId(
                 groupRepository.findFirstByName(groupName).getId()));
+    }
+
+    @Override
+    public List<StudentGroupDTO> showAllGroups() {
+       return studentGroupMapper.mapStudentGroupsToDTOArray((List<StudentGroup>) groupRepository.findAll());
     }
 }

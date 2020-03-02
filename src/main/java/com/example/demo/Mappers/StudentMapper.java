@@ -12,9 +12,9 @@ import java.util.List;
 @Component
 public class StudentMapper {
 
-    protected StudentDTO mapStudentToDTO(Student student){
+    StudentDTO mapStudentToDTO(Student student){
         return new StudentDTO(student.getName(), student.getSurname(),
-                student.getGroup().getName());
+                student.getStudentGroup().getName());
     }
 
     public List<StudentDTO> mapStudentsToDTOArray(List<Student>students){

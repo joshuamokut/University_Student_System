@@ -2,7 +2,9 @@ package com.example.demo.Services;
 
 import com.example.demo.DTO.LectureDTO;
 import com.example.demo.Entities.Lecture;
+import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Mappers.LectureMapper;
+import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.LectureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
     private final LectureMapper lectureMapper;
+    private final GroupRepository groupRepository;
 
     @Override
     public List<LectureDTO> showEventsToday() {
@@ -25,9 +28,12 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public void addEvent(List<Lecture> event) {
-        for(Lecture lecture: event) {
-            lectureRepository.save(lecture);
+        for(Lecture lecture: event){
+            for(String studentGroupName: lecture.getStudentGroupNames()){
+                lecture.getStudentGroups().add(groupRepository.findFirstByName(studentGroupName));
+            }
         }
+        lectureRepository.saveAll(event);
     }
 
     @Override

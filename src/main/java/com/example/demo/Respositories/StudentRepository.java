@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByDateOfBirthBefore(LocalDate date);
-    List<Student> findAllByGroupIdEquals(Long groupId);
+    List<Student> findAllByStudentGroupId(Long groupId);
     List<Student> findAllByName(String name);
     @NotNull
     @Override
