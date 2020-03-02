@@ -14,21 +14,20 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudController {
     private final StudentService studentService;
-    private final StudentMapper studentMapper;
 
     @GetMapping("all")
     public List<StudentDTO> showAllStudents(){
-        return studentMapper.MapStudentsToArray(studentService.showAllStudents());
+        return studentService.showAllStudents();
     }
 
     @GetMapping(value = "/find")
     public List<StudentDTO> findStudentsByName(@RequestParam(value ="name") String name){
-        return studentMapper.MapStudentsToArray(studentService.findStudentsByName(name));
+        return studentService.findStudentsByName(name);
     }
 
     @GetMapping(value = "/find/adults")
     public List<StudentDTO> findAdult(){
-        return studentMapper.MapStudentsToArray(studentService.findStudentsAboveAge(18));
+        return studentService.findStudentsAboveAge(18);
     }
 
     @PostMapping("/add")

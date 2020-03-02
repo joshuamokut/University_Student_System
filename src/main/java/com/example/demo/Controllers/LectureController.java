@@ -18,46 +18,44 @@ import java.util.List;
 public class LectureController {
 
     private final LectureService lectureService;
-    private final LectureMapper lectureMapper;
     @Autowired
-    public LectureController(LectureService lectureService, LectureMapper lectureMapper) {
+    public LectureController(LectureService lectureService) {
         this.lectureService = lectureService;
-        this.lectureMapper = lectureMapper;
     }
 
 
     @PostMapping("add")
-    String AddEvent(@RequestBody List<Lecture> lecture){
+    String addEvent(@RequestBody List<Lecture> lecture){
         lectureService.addEvent(lecture);
 
         return "Event Added\n";
     }
 
     @GetMapping("all")
-    List<LectureDTO> ShowAll(){
-        return lectureMapper.MapLecturesToArray(lectureService.showAll());
+    List<LectureDTO> showAll(){
+        return lectureService.showAll();
     }
 
     @GetMapping("today")
-    List<LectureDTO> ShowToday(){
-        return lectureMapper.MapLecturesToArray(lectureService.showEventsToday());
+    List<LectureDTO> showToday(){
+        return lectureService.showEventsToday();
     }
 
     @GetMapping("date")
-    List<LectureDTO> ShowEventsOn(@RequestParam String date){
+    List<LectureDTO> showEventsOn(@RequestParam String date){
         try {
-            return lectureMapper.MapLecturesToArray(lectureService.showEventsOn(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+            return lectureService.showEventsOn(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         }catch (DateTimeParseException e) {
             return null;
         }
     }
 
     @GetMapping("date/time")
-    List<LectureDTO> ShowEventsOn(@RequestParam String date, @RequestParam String time){
+    List<LectureDTO> showEventsOn(@RequestParam String date, @RequestParam String time){
         try {
-            return lectureMapper.MapLecturesToArray(lectureService.showEventsOn(
+            return lectureService.showEventsOn(
                     LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy")),
-                    LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
+                    LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")
             ));
         }
         catch(DateTimeParseException e){
@@ -66,22 +64,22 @@ public class LectureController {
     }
 
     @GetMapping("/title")
-    List<LectureDTO> ShowEvent(@RequestParam String eventName){
-        return lectureMapper.MapLecturesToArray(lectureService.showEvent(eventName));
+    List<LectureDTO> showEvent(@RequestParam String eventName){
+        return lectureService.showEvent(eventName);
     }
 
     @GetMapping("venue")
-    List<LectureDTO> ShowEventsAt(@RequestParam String venue)
+    List<LectureDTO> showEventsAt(@RequestParam String venue)
     {
-        return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(venue));
+        return lectureService.showEventsAt(venue);
     }
 
     @GetMapping("venue/date")
-    List<LectureDTO> ShowEventsAt(@RequestParam String venue, @RequestParam String date){
+    List<LectureDTO> showEventsAt(@RequestParam String venue, @RequestParam String date){
         try{
-            return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(
+            return lectureService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-            ));
+            );
 
         }catch (DateTimeParseException e){
             return null;
@@ -89,12 +87,12 @@ public class LectureController {
     }
 
     @GetMapping("venue/date/time")
-    List<LectureDTO> ShowEventsAt(@RequestParam String venue, @RequestParam String date, @RequestParam String time){
+    List<LectureDTO> showEventsAt(@RequestParam String venue, @RequestParam String date, @RequestParam String time){
         try{
-            return lectureMapper.MapLecturesToArray(lectureService.showEventsAt(
+            return lectureService.showEventsAt(
                     venue, LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                            LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
-            ));
+                    LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
+            );
 
         }catch (DateTimeParseException e){
             return null;
