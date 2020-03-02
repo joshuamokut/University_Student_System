@@ -1,6 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.DTO.StudentDTO;
+import com.example.demo.DTO.StudentGroupDTO;
 import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Mappers.StudentMapper;
 import com.example.demo.Services.GroupService;
@@ -15,7 +16,6 @@ import java.util.List;
 public class GroupController {
 
     private final GroupService groupService;
-    private final StudentMapper studentMapper;
 
     @PostMapping(value = "/add")
     public String addGroup(@RequestBody List<StudentGroup> studentGroup) {
@@ -27,12 +27,12 @@ public class GroupController {
     }
 
     @GetMapping("/find")
-    public List<StudentGroup> getGroupsByName(@RequestParam String name) {
+    public List<StudentGroupDTO> getGroupsByName(@RequestParam String name) {
         return groupService.getGroupByName(name);
     }
 
     @GetMapping("/students")
     public List<StudentDTO> getStudentsInGroup(@RequestParam String name) {
-        return studentMapper.MapStudentsToArray(groupService.findStudentsInGroup(name));
+        return groupService.findStudentsInGroup(name);
     }
 }
