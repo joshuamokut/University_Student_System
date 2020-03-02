@@ -2,7 +2,9 @@ package com.example.demo.Services;
 
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.Entities.Student;
+import com.example.demo.Entities.StudentGroup;
 import com.example.demo.Mappers.StudentMapper;
+import com.example.demo.Respositories.GroupRepository;
 import com.example.demo.Respositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,14 @@ public class StudentServiceImpl implements StudentService {
 
     private StudentRepository studentRepository;
     private final StudentMapper studentMapper;
-
+    private final GroupRepository groupRepository;
     @Override
     public void addNewStudent(List<Student> students) {
-        for(Student student: students) {
-            studentRepository.save(student);
+        for(Student student: students){
+            student.setStudentGroup(groupRepository.findFirstByName(student.getStudentGroupName()));
         }
+
+        studentRepository.saveAll(students);
     }
 
     @Override
