@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,15 +18,13 @@ import java.util.List;
 public class LectureMapper {
 
     private final StudentMapper studentMapper;
-    private List<StudentDTO> studentDTOList;
 
-    protected LectureDTO mapLecture(Lecture lecture){
-        studentDTOList.clear();
+
+    LectureDTO mapLecture(Lecture lecture){
+        List<StudentDTO> studentDTOList = new ArrayList<>();
 
         for(StudentGroup group: lecture.getStudentGroups()){
-            for(Student student: group.getStudents()){
-                studentDTOList.add(studentMapper.mapStudentToDTO(student));
-            }
+            studentDTOList.addAll(studentMapper.mapStudentsToDTOArray(group.getStudents()));
         }
 
         return new LectureDTO(new CustomDuration(lecture.getStartDate().atTime(lecture.getStartTime()),
