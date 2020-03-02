@@ -1,6 +1,5 @@
 package com.example.demo.Entities;
 
-import javafx.scene.Group;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,9 +24,13 @@ public class Lecture {
     @NonNull private LocalTime startTime;
     @NonNull private LocalDate endDate;
     @NonNull private LocalTime endTime;
-    @OneToMany
+
     @NonNull
-    private List<StudentGroup> studentGroups;
+    @ElementCollection
+    private List<String> studentGroupNames;
+
+    @ManyToMany
+    private List<StudentGroup> studentGroups = new ArrayList<>();
 
     protected Lecture() {
     }
