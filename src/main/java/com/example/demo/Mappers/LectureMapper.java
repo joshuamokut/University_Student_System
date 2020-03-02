@@ -10,6 +10,8 @@ import com.example.demo.Utilities.CustomTime;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,14 +20,13 @@ public class LectureMapper {
 
     private final StudentMapper studentMapper;
     private List<StudentDTO> studentDTOList;
-    private List<LectureDTO> lectureDTOS;
 
-    public LectureDTO mapLecture(Lecture lecture){
+    protected LectureDTO mapLecture(Lecture lecture){
         studentDTOList.clear();
 
         for(StudentGroup group: lecture.getStudentGroups()){
             for(Student student: group.getStudents()){
-                studentDTOList.add(studentMapper.MapStudent(student));
+                studentDTOList.add(studentMapper.mapStudentToDTO(student));
             }
         }
 
@@ -38,9 +39,10 @@ public class LectureMapper {
                 );
     }
 
-    public List<LectureDTO>MapLecturesToArray(List<Lecture> lectures){
+    public List<LectureDTO> mapLecturesToArrayDTO(List<Lecture> lectures){
 
-        lectureDTOS.clear();
+        List<LectureDTO> lectureDTOS= new ArrayList<>();
+
         for(Lecture lecture: lectures){
             lectureDTOS.add(mapLecture(lecture));
         }
