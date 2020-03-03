@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
@@ -21,11 +22,7 @@ public class LectureMapper {
 
 
     LectureDTO mapLecture(Lecture lecture){
-        List<StudentDTO> studentDTOList = new ArrayList<>();
-
-        for(StudentGroup group: lecture.getStudentGroups()){
-            studentDTOList.addAll(studentMapper.mapStudentsToDTOArray(group.getStudents()));
-        }
+        List<StudentDTO> studentDTOList = lecture.getStudentGroups().stream().flatMap(studentGroup -> studentMapper.mapStudentsToDTOArray(studentGroup.getStudents()).stream()).collect(Collectors.toList());
 
         return new LectureDTO(new CustomDuration(lecture.getStartDate().atTime(lecture.getStartTime()),
                 lecture.getEndDate().atTime(lecture.getEndTime())),
@@ -37,13 +34,6 @@ public class LectureMapper {
     }
 
     public List<LectureDTO> mapLecturesToArrayDTO(List<Lecture> lectures){
-
-        List<LectureDTO> lectureDTOS= new ArrayList<>();
-
-        for(Lecture lecture: lectures){
-            lectureDTOS.add(mapLecture(lecture));
-        }
-
-        return lectureDTOS;
+        return lectures.stream().map(this::mapLecture).collect(Collectors.toList());
     }
 }
