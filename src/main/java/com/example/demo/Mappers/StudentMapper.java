@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
@@ -18,14 +19,6 @@ public class StudentMapper {
     }
 
     public List<StudentDTO> mapStudentsToDTOArray(List<Student>students){
-
-        List<StudentDTO> studentDTOS = new ArrayList<>();
-
-        for(Student student: students){
-
-            studentDTOS.add(mapStudentToDTO(student));
-        }
-
-        return studentDTOS;
+        return students.stream().map(this::mapStudentToDTO).collect(Collectors.toList());
     }
 }
