@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface GroupRepository extends CrudRepository<StudentGroup, Long> {
     StudentGroup findFirstByName(String name);
-    StudentGroup findFirstById(Long id);
+
     List<StudentGroup> findAllByName(String name);
 }
