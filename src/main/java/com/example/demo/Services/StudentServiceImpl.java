@@ -22,10 +22,7 @@ public class StudentServiceImpl implements StudentService {
     private final GroupRepository groupRepository;
     @Override
     public void addNewStudent(List<Student> students) {
-        for(Student student: students){
-            student.setStudentGroup(groupRepository.findFirstByName(student.getStudentGroupName()));
-        }
-
+        students.forEach(student -> student.setStudentGroup(groupRepository.findFirstByName(student.getStudentGroupName())));
         studentRepository.saveAll(students);
     }
 
